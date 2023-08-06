@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "bulk discount index" do
+RSpec.describe "bulk discount delete" do
   before :each do
     @merchant1 = Merchant.create!(name: "Hair Care")
     @merchant2 = Merchant.create!(name: "Jewelry Jar")
@@ -9,32 +9,14 @@ RSpec.describe "bulk discount index" do
     @bulk_discount_3 = BulkDiscount.create!(name: "Spring Fling", percentage: 0.30, quantity: 100, merchant_id: @merchant2.id)
   end
 
-  it "has a link to a new bulk discount page" do
-    visit merchant_bulk_discounts_path(@merchant1)
-          
-    click_link 'Create New Discount'
-    
-    expect(page).to have_content('New Bulk Discount')
-  end
-
-  it "has a list of all bulk discounts" do
-    visit merchant_bulk_discounts_path(@merchant1)
-
-    @merchant1.bulk_discounts.each do |bulk_discount|
-      within("#bulk-discount-item-#{bulk_discount.id}") do
-        expect(page).to have_content(bulk_discount.name)
-        expect(page).to have_content("Percentage: #{(bulk_discount.percentage * 100).to_i}%")
-        expect(page).to have_content("Quantity: #{bulk_discount.quantity}")
-      end
-    end
-  expect(page).not_to have_content(@bulk_discount_3.name)
-  end
-
   it "can delete a bulk discount" do
+    expect(@merchant1.bulk_discounts.count).to eq(2)
+    expect(@bulk_discount_1.name).to eq("Fire Sale")
+    expect(@bulk_discount_2.name).to eq("Going Out of Business")
+
     visit merchant_bulk_discounts_path(@merchant1)
       
     click_link "Delete", match: :first
-    
     expect(page).to have_current_path(merchant_bulk_discounts_path(@merchant1))
     expect(page).not_to have_content(@bulk_discount_1.name)
     expect(page).to have_content(@bulk_discount_2.name)
