@@ -19,4 +19,8 @@ class Invoice < ApplicationRecord
       invoice_item.discount.nil? ? invoice_item.unit_price * invoice_item.quantity : invoice_item.discounted_revenue
     end
   end
+
+  def formatted_total_revenue_with_discount
+    "$#{total_revenue_with_discount.round(2)}"
+  end
 end
