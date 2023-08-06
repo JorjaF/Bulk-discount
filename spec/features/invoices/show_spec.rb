@@ -108,4 +108,11 @@ RSpec.describe "invoices show" do
     expect(page).to have_content(@invoice_1.total_revenue_with_discount)
     expect(page).not_to have_content(@invoice_4.total_revenue_with_discount)
   end
+
+  it "can show, what if any, bulk discount is applied" do
+    visit merchant_invoice_path(@merchant1, @invoice_1)
+
+    expect(page).to have_content(@bulk_discount1.name)
+
+  end
 end
