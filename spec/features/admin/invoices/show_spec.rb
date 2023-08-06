@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Admin Invoices Index Page" do
+describe "Admin Invoices Show Page" do
   before :each do
     @m1 = Merchant.create!(name: "Merchant 1")
 
@@ -17,6 +17,9 @@ describe "Admin Invoices Index Page" do
     @ii_2 = InvoiceItem.create!(invoice_id: @i1.id, item_id: @item_2.id, quantity: 6, unit_price: 1, status: 1)
     @ii_3 = InvoiceItem.create!(invoice_id: @i2.id, item_id: @item_2.id, quantity: 87, unit_price: 12, status: 2)
 
+    @bulk_discount_1 = BulkDiscount.create!(name: "Discount 1", percentage: 0.2, quantity: 10, merchant_id: @m1.id)
+    @bulk_discount_2 = BulkDiscount.create!(name: "Discount 2", percentage: 0.5, quantity: 50, merchant_id: @m1.id)
+    
     visit admin_invoice_path(@i1)
   end
 
@@ -69,4 +72,10 @@ describe "Admin Invoices Index Page" do
       expect(@i1.status).to eq("completed")
     end
   end
+  
+  it "should have a section for the total revenue with discounts" do
+    expect(page).to have_content("Total Revenue: $#{@i1.total_revenue}")
+    expect(page).to have_content("Total Discounted Revenue: #{@i1.formatted_total_revenue_with_discount}")
+  end
+
 end
