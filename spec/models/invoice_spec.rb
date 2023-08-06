@@ -26,7 +26,7 @@ RSpec.describe Invoice, type: :model do
     end
 
     it "can get total_revenue" do
-      expect(@invoice_1.total_revenue).to eq(260)
+      expect(@invoice_1.total_revenue).to eq(260.0)
     end
 
     it "can assign a discount to an invoice item" do

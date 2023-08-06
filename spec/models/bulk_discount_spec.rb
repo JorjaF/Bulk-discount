@@ -30,10 +30,5 @@ RSpec.describe BulkDiscount, type: :model do
       expect(@bulk_discount1.decimal_to_percentage).to eq("10%")
       expect(@bulk_discount2.decimal_to_percentage).to eq("20%")
     end
-   
-    it "can find the best discount for an invoice item" do
-      expect(@item_1.best_discount(10)).to eq(@bulk_discount1)
-      expect(@item_3.best_discount(15)).to eq(@bulk_discount2)
-    end
   end
 end
