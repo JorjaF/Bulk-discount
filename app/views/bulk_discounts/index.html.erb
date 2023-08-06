@@ -3,9 +3,9 @@
 <%= link_to "Create New Discount", new_merchant_bulk_discount_path(@merchant), class: "create-new-discount-link" %>
 
 <% if @bulk_discounts.present? %>
-  <div class="bulk-discounts-list">
+  <div id="bulk-discounts-list">
     <% @bulk_discounts.each do |bulk_discount| %>
-      <div class="bulk-discount-item">
+      <div id="bulk-discount-item-<%= bulk_discount.id %>">
         <h2><%= bulk_discount.name %></h2>
         <p>Percentage: <%= bulk_discount.decimal_to_percentage %></p>
         <p>Quantity: <%= bulk_discount.quantity %></p>

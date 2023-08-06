@@ -14,13 +14,18 @@ class BulkDiscountsController < ApplicationController
   end
   
   def create
-    # TODO: add sad path if user enters invalid data
     @merchant = Merchant.find(params[:merchant_id])
-    BulkDiscount.create!(name: params[:name],
+    bulk_discount = BulkDiscount.create(name: params[:name],
                 percentage: params[:percentage],
                 quantity: params[:quantity],
                 merchant: @merchant)
-    redirect_to merchant_bulk_discounts_path(@merchant) 
+    if bulk_discount.save
+      flash.notice = "Succesfully Created New Bulk Discount!"
+      redirect_to merchant_bulk_discounts_path(@merchant) 
+    else
+      flash.alert = "All fields must be completed, get your act together."
+      redirect_to new_merchant_bulk_discount_path(@merchant)
+    end
   end
 
   def destroy
@@ -49,13 +54,8 @@ class BulkDiscountsController < ApplicationController
   end
 
   private
-  
-  def item_params
-    params.require(:bulk_discount).permit(:name, :percentage, :quantity, :merchant_id)
-  end
 
   def bulk_discount_params
     params.require(:bulk_discount).permit(:name, :percentage, :quantity, :merchant_id)
   end
-  
 end

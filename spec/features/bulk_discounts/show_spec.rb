@@ -23,6 +23,6 @@ RSpec.describe "bulk discount show", type: :feature do
 
     click_link "Edit Discount"
 
-  expect(current_path).to eq(edit_merchant_bulk_discount_path(@merchant1, @bulk_discount_1))
+    expect(current_path).to eq(edit_merchant_bulk_discount_path(@merchant1, @bulk_discount_1))
   end
 end
