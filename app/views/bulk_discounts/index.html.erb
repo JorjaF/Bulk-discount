@@ -2,6 +2,13 @@
 
 <%= link_to "Create New Discount", new_merchant_bulk_discount_path(@merchant), class: "create-new-discount-link" %>
 
+<div id="upcoming-holidays">
+  <h2>Upcoming Holidays</h2>
+  <% upcoming_us_holidays(3).each do |holiday| %>
+    <p><%= "#{holiday['date']} - #{holiday['name']}" %></p>
+  <% end %>
+</div>
+
 <% if @bulk_discounts.present? %>
   <div id="bulk-discounts-list">
     <% @bulk_discounts.each do |bulk_discount| %>
