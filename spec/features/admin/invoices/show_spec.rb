@@ -77,5 +77,4 @@ describe "Admin Invoices Show Page" do
     expect(page).to have_content("Total Revenue: $#{@i1.total_revenue}")
     expect(page).to have_content("Total Discounted Revenue: #{@i1.formatted_total_revenue_with_discount}")
   end
-
 end
