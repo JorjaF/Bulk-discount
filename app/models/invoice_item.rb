@@ -7,7 +7,6 @@ class InvoiceItem < ApplicationRecord
 
   belongs_to :invoice
   belongs_to :item
-  has_one :bulk_discount, required: false
 
   enum status: [:pending, :packaged, :shipped]
 
@@ -20,7 +19,11 @@ class InvoiceItem < ApplicationRecord
     item.best_discount(quantity)
   end
 
-  def discounted_revenue
+  def discounted_revenue 
+    # I chose to calculate the disount fresh everytime instead of setting up a relationship on the invoice_item.
+    # I think this is more efficient because it only calculates the discount when it is needed.
+    # If I set up the relationship, new discounts won't apply to old "in-process"invoices.
+    # but I could see how that might be useful too, i would just need more info.
     unit_price * quantity * (1 - discount.percentage)
   end
 end
