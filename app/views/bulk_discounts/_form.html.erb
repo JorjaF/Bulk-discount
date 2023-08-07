@@ -1,9 +1,9 @@
-<%= form_with model: model, method: method, url: url, class: 'merchant_bulk_discount_form', local: true do |f| %>
+<%= form_with model: model, method: method, url: url, class: "merchant_bulk_discount_form", local: true do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %><br/><br/>
   <%= f.label :percentage_as_decimal %>
   <%= f.text_field :percentage %><br/><br/>
   <%= f.label :quantity %>
   <%= f.text_field :quantity %><br/><br/>
-  <%= f.submit 'Submit'%>
+  <%= f.submit "Submit"%>
 <% end %>
