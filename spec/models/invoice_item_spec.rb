@@ -40,5 +40,11 @@ RSpec.describe InvoiceItem, type: :model do
     it 'incomplete_invoices' do
       expect(InvoiceItem.incomplete_invoices).to eq([@i1, @i3])
     end
+
+    it "can find the best discount for an invoice item" do
+      expect(@item_1.best_discount(10)).to eq(@bulk_discount1)
+      expect(@item_3.best_discount(15)).to eq(@bulk_discount2)
+    end
+
   end
 end

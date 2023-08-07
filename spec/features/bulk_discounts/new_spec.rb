@@ -7,11 +7,11 @@ RSpec.describe "bulk discount new" do
     @bulk_discount_1 = BulkDiscount.create!(name: "Fire Sale", percentage: 0.1, quantity: 10, merchant_id: @merchant1.id)
     @bulk_discount_2 = BulkDiscount.create!(name: "Going Out of Business", percentage: 0.25, quantity: 20, merchant_id: @merchant1.id)
     @bulk_discount_3 = BulkDiscount.create!(name: "Spring Fling", percentage: 0.30, quantity: 100, merchant_id: @merchant2.id)
+  
+    visit new_merchant_bulk_discount_path(@merchant1)
   end
 
   it "can add a new bulk discount" do
-    visit new_merchant_bulk_discount_path(@merchant1)
-    
     expect(page).to have_content('New Bulk Discount')
 
     fill_in 'Name', with: 'New Discount'
@@ -29,11 +29,6 @@ RSpec.describe "bulk discount new" do
   end
   
   it "can not build a new discount without all the fields filled in" do
-    
-    visit merchant_bulk_discounts_path(@merchant1)
-        
-    click_link 'Create New Discount'
-    
     expect(page).to have_content('New Bulk Discount')
 
     fill_in 'Name', with: 'New Discount'

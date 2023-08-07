@@ -46,6 +46,10 @@ RSpec.describe Invoice, type: :model do
       expect(@invoice_1.invoice_items[1].discount).to_not eq(@bulk_discount3)
     end
 
+    it "can find the total revenue with discounts" do
+      expect(@invoice_1.total_revenue_with_discount).to eq(218)
+    end
+
     it "can formatted_total_revenue_with_discount" do
       expect(@invoice_1.formatted_total_revenue_with_discount).to eq("$218.0")
     end

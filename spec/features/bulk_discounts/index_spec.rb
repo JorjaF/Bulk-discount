@@ -27,7 +27,7 @@ RSpec.describe "bulk discount index" do
         expect(page).to have_content("Quantity: #{bulk_discount.quantity}")
       end
     end
-  expect(page).not_to have_content(@bulk_discount_3.name)
+        expect(page).not_to have_content(@bulk_discount_3.name)
   end
 
   it "can delete a bulk discount" do
