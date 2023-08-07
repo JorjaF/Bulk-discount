@@ -57,6 +57,7 @@ RSpec.describe "bulk discount index" do
       expect(page).to have_content("Holiday 1")
       expect(page).to have_content("Holiday 2")
       expect(page).to have_content("Holiday 3")
+      expect(page).not_to have_content("Holiday 4")
     end
   end
 end

@@ -113,6 +113,8 @@ RSpec.describe "invoices show" do
     visit merchant_invoice_path(@merchant1, @invoice_1)
 
     expect(page).to have_content(@bulk_discount1.name)
+    expect(page).to have_content(@bulk_discount2.name)
+    expect(page).to_not have_content(@bulk_discount3.name)
 
   end
 end
