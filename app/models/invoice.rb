@@ -15,6 +15,7 @@ class Invoice < ApplicationRecord
   end
 
   def total_revenue_with_discount
+    # I tried to do this in SQL, but I couldn't figure out how to get it
     invoice_items.sum do |invoice_item|
       invoice_item.discount.nil? ? invoice_item.unit_price * invoice_item.quantity : invoice_item.discounted_revenue
     end
