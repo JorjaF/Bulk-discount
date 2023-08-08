@@ -9,7 +9,7 @@
     <section id="status-update-<%= @invoice.id %>">
       <%= form_with model: @invoice, url: admin_invoice_path(@invoice), method: :patch do |f| %>
         <%= f.select :status, Invoice.statuses.keys, selected: "#{@invoice.status}" %>
-        <%= f.submit 'Update Invoice' %>
+        <%= f.submit "Update Invoice" %>
     </section>
       <% end %>
   <p>Created on: <%= @invoice.created_at.strftime("%A, %B %d, %Y") %>

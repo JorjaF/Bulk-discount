@@ -12,28 +12,28 @@ RSpec.describe "bulk discount new" do
   end
 
   it "can add a new bulk discount" do
-    expect(page).to have_content('New Bulk Discount')
+    expect(page).to have_content("New Bulk Discount")
 
-    fill_in 'Name', with: 'New Discount'
-    fill_in 'percentage', with: '.15'
-    fill_in 'Quantity', with: '25'
-    click_button 'Submit'
+    fill_in "Name", with: "New Discount"
+    fill_in "percentage", with: ".15"
+    fill_in "Quantity", with: "25"
+    click_button "Submit"
 
-    expect(page).to have_content('Bulk Discounts Index')
+    expect(page).to have_content("Bulk Discounts Index")
     
     within("#bulk-discount-item-#{BulkDiscount.last.id}") do
-      expect(page).to have_content('New Discount')
-      expect(page).to have_content('Percentage: 15%')
-      expect(page).to have_content('Quantity: 25')
+      expect(page).to have_content("New Discount")
+      expect(page).to have_content("Percentage: 15%")
+      expect(page).to have_content("Quantity: 25")
     end
   end
   
   it "can not build a new discount without all the fields filled in" do
-    expect(page).to have_content('New Bulk Discount')
+    expect(page).to have_content("New Bulk Discount")
 
-    fill_in 'Name', with: 'New Discount'
-    fill_in 'percentage', with: '.15'
-    click_button 'Submit'
+    fill_in "Name", with: "New Discount"
+    fill_in "percentage", with: ".15"
+    click_button "Submit"
 
     expect(page).to have_content("All fields must be completed, get your act together.")
   end

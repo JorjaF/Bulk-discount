@@ -11,7 +11,7 @@ class Admin::MerchantsController < ApplicationController
 
   def create
     Merchant.create!(name: params[:name])
-    flash.notice = 'Merchant Has Been Created!'
+    flash.notice = "Merchant Has Been Created!"
     redirect_to admin_merchants_path
   end
 

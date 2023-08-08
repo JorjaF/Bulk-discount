@@ -3,7 +3,7 @@ class Admin::MerchantStatusController < ApplicationController
   
   def update
     @merchant.update(merchant_status_params)
-    flash.notice = 'Merchant Has Been Updated!'
+    flash.notice = "Merchant Has Been Updated!"
     redirect_to admin_merchants_path
   end
 

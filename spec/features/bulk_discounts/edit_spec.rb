@@ -36,7 +36,7 @@ RSpec.describe "bulk discount edit", type: :feature do
     expect(page).to have_content("Succesfully Updated Bulk Discount Info!")
   end
 
-  it "can fill in form, click submit, and redirect to that bulk discount's show page and see updated info and flash message" do
+  it "can fill in form, click submit, and redirect to that bulk discount's show page and see failure flash message" do
     visit edit_merchant_bulk_discount_path(@merchant1, @bulk_discount_1)
     
     fill_in "Name", with: "Hair Flair"

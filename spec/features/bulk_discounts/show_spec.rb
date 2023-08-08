@@ -15,6 +15,7 @@ RSpec.describe "bulk discount show", type: :feature do
     expect(page).to have_content(@bulk_discount_1.name)
     expect(page).to have_content(@bulk_discount_1.decimal_to_percentage)
     expect(page).to have_content(@bulk_discount_1.quantity)
+    expect(page).to_not have_content(@bulk_discount_3.name)
   end
 
   it "can edit a bulk discount" do
@@ -24,5 +25,6 @@ RSpec.describe "bulk discount show", type: :feature do
     click_link "Edit Discount"
 
     expect(current_path).to eq(edit_merchant_bulk_discount_path(@merchant1, @bulk_discount_1))
+    expect(page).to_not have_content(@bulk_discount_1.name)
   end
 end
