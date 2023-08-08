@@ -40,7 +40,7 @@ RSpec.describe "invoices show" do
     @ii_8 = InvoiceItem.create!(invoice_id: @invoice_7.id, item_id: @item_8.id, quantity: 5, unit_price: 5, status: 1)
     @ii_9 = InvoiceItem.create!(invoice_id: @invoice_7.id, item_id: @item_4.id, quantity: 1, unit_price: 1, status: 1)
     @ii_10 = InvoiceItem.create!(invoice_id: @invoice_8.id, item_id: @item_5.id, quantity: 1, unit_price: 1, status: 1)
-    @ii_11 = InvoiceItem.create!(invoice_id: @invoice_1.id, item_id: @item_8.id, quantity: 12, unit_price: 6, status: 1)
+    @ii_11 = InvoiceItem.create!(invoice_id: @invoice_1.id, item_id: @item_8.id, quantity: 6, unit_price: 6, status: 1)
 
     @transaction1 = Transaction.create!(credit_card_number: 203942, result: 1, invoice_id: @invoice_1.id)
     @transaction2 = Transaction.create!(credit_card_number: 230948, result: 1, invoice_id: @invoice_2.id)
@@ -53,6 +53,7 @@ RSpec.describe "invoices show" do
 
     @bulk_discount1 = BulkDiscount.create!(name: "Going Out of Business", percentage: 0.2, quantity: 10, merchant_id: @merchant1.id)
     @bulk_discount2 = BulkDiscount.create!(name: "Small Discount", percentage: 0.1, quantity: 5, merchant_id: @merchant1.id)
+    @bulk_discount3 = BulkDiscount.create!(name: "Almost There", percentage: 0.50, quantity: 500, merchant_id: @merchant1.id)
   end
 
   it "shows the invoice information" do
