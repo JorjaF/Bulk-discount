@@ -54,27 +54,23 @@ RSpec.describe "invoices show" do
     @bulk_discount1 = BulkDiscount.create!(name: "Going Out of Business", percentage: 0.2, quantity: 10, merchant_id: @merchant1.id)
     @bulk_discount2 = BulkDiscount.create!(name: "Small Discount", percentage: 0.1, quantity: 5, merchant_id: @merchant1.id)
     @bulk_discount3 = BulkDiscount.create!(name: "Almost There", percentage: 0.50, quantity: 500, merchant_id: @merchant1.id)
+
+    visit merchant_invoice_path(@merchant1, @invoice_1)
   end
 
   it "shows the invoice information" do
-    visit merchant_invoice_path(@merchant1, @invoice_1)
-
     expect(page).to have_content(@invoice_1.id)
     expect(page).to have_content(@invoice_1.status)
     expect(page).to have_content(@invoice_1.created_at.strftime("%A, %B %-d, %Y"))
   end
 
   it "shows the customer information" do
-    visit merchant_invoice_path(@merchant1, @invoice_1)
-
     expect(page).to have_content(@customer_1.first_name)
     expect(page).to have_content(@customer_1.last_name)
     expect(page).to_not have_content(@customer_2.last_name)
   end
 
   it "shows the item information" do
-    visit merchant_invoice_path(@merchant1, @invoice_1)
-
     expect(page).to have_content(@item_1.name)
     expect(page).to have_content(@ii_1.quantity)
     expect(page).to have_content(@ii_1.unit_price)
@@ -83,8 +79,6 @@ RSpec.describe "invoices show" do
   end
 
   it "shows the total revenue for this invoice" do
-    visit merchant_invoice_path(@merchant1, @invoice_1)
-
     expect(page).to have_content(@invoice_1.total_revenue)
   end
 
@@ -111,11 +105,10 @@ RSpec.describe "invoices show" do
   end
 
   it "can show, what if any, bulk discount is applied" do
-    visit merchant_invoice_path(@merchant1, @invoice_1)
+    
 
     expect(page).to have_content(@bulk_discount1.name)
     expect(page).to have_content(@bulk_discount2.name)
     expect(page).to_not have_content(@bulk_discount3.name)
-
   end
 end

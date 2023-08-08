@@ -11,8 +11,6 @@ describe Merchant do
     it { should have_many(:customers).through(:invoices) }
     it { should have_many(:transactions).through(:invoices) }
     it { should have_many(:bulk_discounts)}
-
-
   end
 
   describe "class methods" do
@@ -80,7 +78,6 @@ describe Merchant do
       @transaction7 = Transaction.create!(credit_card_number: 203942, result: 1, invoice_id: @invoice_7.id)
       @transaction7 = Transaction.create!(credit_card_number: 203942, result: 1, invoice_id: @invoice_8.id)
       @transaction8 = Transaction.create!(credit_card_number: 203942, result: 1, invoice_id: @invoice_9.id)
-
     end
 
     it 'top_merchants' do
